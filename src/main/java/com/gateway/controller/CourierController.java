@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gateway.criteria.CourierCriteria;
+import com.gateway.dto.CourierDTO;
 import com.gateway.entity.CourierEntity;
 import com.gateway.service.CourierService;
 
@@ -26,8 +27,8 @@ public class CourierController {
 	}
 
 	@PostMapping
-	public void save(@RequestBody CourierEntity entity) {
-		this.courierService.save(entity);
+    public void save(@RequestBody CourierDTO dto) {
+        this.courierService.save(dto);
 	}
 
 }

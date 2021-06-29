@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gateway.criteria.CourierCriteria;
+import com.gateway.dto.CourierDTO;
 import com.gateway.entity.CourierEntity;
+import com.gateway.mapper.CourierMapper;
 import com.gateway.repository.CourierRepository;
 import com.gateway.specification.CourierSpecification;
 
@@ -20,8 +22,8 @@ public class CourierService {
 		return this.courierRepository.findAll(CourierSpecification.courierEntitySpecification(criteria));
 	}
 
-	public void save(CourierEntity entity) {
-		this.courierRepository.save(entity);
+    public void save(CourierDTO dto) {
+        this.courierRepository.save(CourierMapper.toEntity(dto));
 	}
 
 }

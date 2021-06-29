@@ -18,7 +18,7 @@ public class CourierController {
 
     @GetMapping
     public List<CourierEntity> getAll(CourierSpecification specification) {
-        return this.courierService.getAll();
+        return this.courierService.getAll(specification);
     }
 
 }

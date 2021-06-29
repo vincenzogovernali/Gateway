@@ -15,7 +15,7 @@ public class DatabaseConfig {
         try {
             HikariConfig hikariConfig = new HikariConfig();
             hikariConfig.setDataSourceClassName("com.microsoft.sqlserver.jdbc.SQLServerDataSource");
-            hikariConfig.setJdbcUrl("jdbc:sqlserver://127.0.0.1:3306/");
+            hikariConfig.setJdbcUrl("jdbc:sqlserver://127.0.0.1:3306/data");
             hikariConfig.setUsername("sa");
             hikariConfig.setPassword("Password11!!!!");
             hikariConfig.validate();

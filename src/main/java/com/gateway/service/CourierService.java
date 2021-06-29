@@ -22,8 +22,20 @@ public class CourierService {
 		return this.courierRepository.findAll(CourierSpecification.courierEntitySpecification(criteria));
 	}
 
-    public void save(CourierDTO dto) {
+    public void saveOrUpdate(CourierDTO dto) {
         this.courierRepository.save(CourierMapper.toEntity(dto));
 	}
+
+    public void saveOrUpdateAll(List<CourierDTO> dtos) {
+        this.courierRepository.saveAll(CourierMapper.toEntity(dtos));
+    }
+
+    public void delete(CourierDTO dto) {
+        this.courierRepository.delete(CourierMapper.toEntity(dto));
+    }
+
+    public void deleteAll(List<CourierDTO> dtos) {
+        this.courierRepository.deleteAll(CourierMapper.toEntity(dtos));
+    }
 
 }

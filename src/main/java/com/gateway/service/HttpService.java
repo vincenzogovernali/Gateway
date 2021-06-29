@@ -9,21 +9,21 @@ import org.springframework.web.reactive.function.client.WebClient.RequestHeaders
 
 import com.gateway.entity.HeaderEntity;
 
-import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 @Service
 public class HttpService {
 
-    public Flux<?> get(String url, List<HeaderEntity> headers, Class<?> classType) {
+    public Mono<?> get(String url, List<HeaderEntity> headers, Class<?> classType) {
         RequestHeadersUriSpec<?> spec = WebClient.create(url).get();    
         if(headers != null && !headers.isEmpty()) {
             addHeaders(spec, headers);
         }
         
-        return spec.retrieve().bodyToFlux(classType);
+        return spec.retrieve().bodyToMono(classType);
     }
 
-    public Flux<?> post(String url, List<HeaderEntity> headers, Class<?> classType, Object body) {
+    public Mono<?> post(String url, List<HeaderEntity> headers, Class<?> classType, Object body) {
         RequestBodyUriSpec spec = WebClient.create(url).post();
         if (headers != null && !headers.isEmpty()) {
             addHeaders(spec, headers);
@@ -31,8 +31,9 @@ public class HttpService {
         if (body != null) {
             spec.bodyValue(body);
         }
-        return spec.retrieve().bodyToFlux(classType);
+        return spec.retrieve().bodyToMono(classType);
     }
+
 
     /**
      * Ciclo gli Headers e li aggiungo alla chiamata

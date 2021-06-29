@@ -27,8 +27,8 @@ public class CourierController {
 	}
 
 	@PostMapping
-    public void save(@RequestBody CourierDTO dto) {
-        this.courierService.save(dto);
+    public void saveOrUpdate(@RequestBody CourierDTO dto) {
+        this.courierService.saveOrUpdate(dto);
 	}
 
 }

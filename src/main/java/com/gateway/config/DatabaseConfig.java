@@ -14,7 +14,7 @@ public class DatabaseConfig {
     public HikariDataSource createConnection() throws DatabaseException {
         try {
             HikariConfig hikariConfig = new HikariConfig();
-            hikariConfig.setDataSourceClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            hikariConfig.setDataSourceClassName("com.microsoft.sqlserver.jdbc.SQLServerDataSource");
             hikariConfig.setJdbcUrl("jdbc:sqlserver://127.0.0.1:3306/");
             hikariConfig.setUsername("sa");
             hikariConfig.setPassword("Password11!!!!");

@@ -7,6 +7,6 @@ import org.springframework.stereotype.Repository;
 import com.gateway.entity.CourierEntity;
 
 @Repository
-public interface CourierRepository extends JpaRepository<CourierEntity, Long>, JpaSpecificationExecutor {
+public interface CourierRepository extends JpaRepository<CourierEntity, Long>, JpaSpecificationExecutor<CourierEntity> {
 
 }

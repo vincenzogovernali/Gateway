@@ -13,15 +13,20 @@ import com.gateway.specification.CourierSpecification;
 @Service
 public class CourierService {
 
-    @Autowired
-    private CourierRepository courierRepository;
+	@Autowired
+	private CourierRepository courierRepository;
 
-    public List<CourierEntity> getAll(CourierSpecification specification) {
-        return this.courierRepository.findAll(createExampleList(specification));
-    }
+	public List<CourierEntity> getAll(CourierSpecification specification) {
+		return this.courierRepository.findAll(createExampleList(specification));
+	}
 
-    private Example<CourierEntity> createExampleList(CourierSpecification specification) {
-        return null;
-    }
+	private Example<CourierEntity> createExampleList(CourierSpecification specification) {
+		CourierEntity entity = new CourierEntity(specification.getId(), specification.getService(),
+				specification.getUrl(), specification.getServiceUsername(), specification.getServicePassword(),
+				specification.getAccountUsername(), specification.getAccountPassword(), specification.getToken());
+		Example<CourierEntity> example = Example.of(CourierEntity.fr);
+
+		return null;
+	}
 
 }

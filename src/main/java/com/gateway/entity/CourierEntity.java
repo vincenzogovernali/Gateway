@@ -15,7 +15,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "Courier")
+@Entity(name = "courier")
 public class CourierEntity {
 
 	@Id
@@ -33,23 +33,23 @@ public class CourierEntity {
 	private String url;
 
 	@Basic(optional = false)
-    @Column(nullable = true)
+	@Column(nullable = true)
 	private String serviceUsername;
 
 	@Basic(optional = false)
-    @Column(nullable = true)
+	@Column(nullable = true)
 	private String servicePassword;
 
 	@Basic(optional = false)
-    @Column(nullable = true)
+	@Column(nullable = true)
 	private String accountUsername;
 
 	@Basic(optional = false)
-    @Column(nullable = true)
+	@Column(nullable = true)
 	private String accountPassword;
 
 	@Basic(optional = false)
-    @Column(nullable = true)
+	@Column(nullable = true)
 	private String token;
 
 }

@@ -11,6 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class CourierEntity {
 
+    private Long id;
 	private String service;
 	private String url;
 	private String serviceUsername;

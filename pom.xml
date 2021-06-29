@@ -85,6 +85,36 @@
 					</excludes>
 				</configuration>
 			</plugin>
+            <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-resources-plugin</artifactId>
+               <configuration>
+                  <source>${maven.compiler.source}</source>
+                  <target>${maven.compiler.target}</target>
+                  <compilerArguments>
+                     <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+                  </compilerArguments>
+               </configuration>
+               <executions>
+                  <execution>
+                     <id>copy-resources</id>
+                     <!-- here the phase you need -->
+                     <phase>validate</phase>
+                     <goals>
+                        <goal>copy-resources</goal>
+                     </goals>
+                     <configuration>
+                        <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                        <resources>
+                           <resource>
+                              <directory>src/main/resources</directory>
+                              <filtering>true</filtering>
+                           </resource>
+                        </resources>
+                     </configuration>
+                  </execution>
+               </executions>
+            </plugin>
 		</plugins>
 	</build>
 

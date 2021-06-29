@@ -14,10 +14,10 @@ public class DatabaseConfig {
 	public HikariDataSource createConnection() throws DatabaseException {
 		try {
 			HikariConfig hikariConfig = new HikariConfig();
-			hikariConfig.setDataSourceClassName("com.microsoft.sqlserver.jdbc.SQLServerDataSource");
-			hikariConfig.setJdbcUrl("jdbc:sqlserver://127.0.0.1:1433/data");
+            hikariConfig.setJdbcUrl("jdbc:sqlserver://127.0.0.1:1433");
 			hikariConfig.setUsername("sa");
 			hikariConfig.setPassword("Password11!!!!");
+            hikariConfig.setSchema("data");
 			hikariConfig.validate();
 			return new HikariDataSource(hikariConfig);
 		} catch (Exception e) {

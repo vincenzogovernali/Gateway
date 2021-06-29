@@ -7,24 +7,13 @@ import javax.persistence.criteria.Root;
 
 import org.springframework.data.jpa.domain.Specification;
 
+import com.gateway.criteria.CourierCriteria;
 import com.gateway.entity.CourierEntity;
 import com.gateway.entity.CourierEntity_;
 
-import lombok.Data;
-
-@Data
 public class CourierSpecification {
 
-	private Long id;
-	private String service;
-	private String url;
-	private String serviceUsername;
-	private String servicePassword;
-	private String accountUsername;
-	private String accountPassword;
-	private String token;
-
-	public static Specification<CourierEntity> customerHasBirthday() {
+	public static Specification<CourierEntity> courierEntitySpecification(CourierCriteria criteria) {
 		return new Specification<CourierEntity>() {
 
 			private static final long serialVersionUID = 5003585443426119934L;

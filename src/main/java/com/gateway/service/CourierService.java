@@ -21,11 +21,6 @@ public class CourierService {
 	}
 
 	private Example<CourierEntity> createExampleList(CourierSpecification specification) {
-		CourierEntity entity = new CourierEntity(specification.getId(), specification.getService(),
-				specification.getUrl(), specification.getServiceUsername(), specification.getServicePassword(),
-				specification.getAccountUsername(), specification.getAccountPassword(), specification.getToken());
-		Example<CourierEntity> example = Example.of(CourierEntity.fr);
-
 		return null;
 	}
 

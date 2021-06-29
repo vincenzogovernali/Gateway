@@ -14,10 +14,10 @@ public class DatabaseConfig {
     public HikariDataSource createConnection() throws DatabaseException {
         try {
             HikariConfig hikariConfig = new HikariConfig();
-            hikariConfig.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/nomeDatabase");
-            hikariConfig.setDriverClassName("com.mysql.jdbc.Driver");
-            hikariConfig.setUsername("mysql");
-            hikariConfig.setPassword("mysql");
+            hikariConfig.setDataSourceClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            hikariConfig.setJdbcUrl("jdbc:sqlserver://127.0.0.1:3306/");
+            hikariConfig.setUsername("sa");
+            hikariConfig.setPassword("Password11!!!!");
             hikariConfig.validate();
             return new HikariDataSource(hikariConfig);
         } catch (Exception e) {

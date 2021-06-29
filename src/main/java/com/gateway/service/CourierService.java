@@ -20,4 +20,8 @@ public class CourierService {
 		return this.courierRepository.findAll(CourierSpecification.courierEntitySpecification(criteria));
 	}
 
+	public void save(CourierEntity entity) {
+		this.courierRepository.save(entity);
+	}
+
 }

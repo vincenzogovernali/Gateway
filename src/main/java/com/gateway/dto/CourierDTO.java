@@ -4,19 +4,20 @@ import lombok.Data;
 
 @Data
 public class CourierDTO {
-    private Long id;
 
-    private String service;
+	private Long id;
 
-    private String url;
+	private String service;
 
-    private String serviceUsername;
+	private String url;
 
-    private String servicePassword;
+	private String serviceUsername;
 
-    private String accountUsername;
+	private String servicePassword;
 
-    private String accountPassword;
+	private String accountUsername;
 
-    private String token;
+	private String accountPassword;
+
+	private String token;
 }

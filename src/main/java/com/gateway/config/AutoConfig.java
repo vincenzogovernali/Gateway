@@ -18,30 +18,31 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AutoConfig {
 
-    private List<Long> portList = Arrays.asList(8080L, 8081L, 8082L);
+	private List<Long> portList = Arrays.asList(8080L, 8081L, 8082L);
 
-    private final String baseUrl = "http://localhost:";
+	private final String baseUrl = "http://localhost:";
 
-    private final String finalUrl = "/getInfo";
+	private final String finalUrl = "/getinfo";
 
-    @Bean
-    @DependsOn({"createConnection"})
-    public List<Long> startWarmUp(HttpService service, CourierService courierService) {
-        this.portList.forEach(port -> {
-            CourierEntity fluxCourierEntity = (CourierEntity) service.get(this.baseUrl.concat(port.toString()).concat(this.finalUrl), null, CourierEntity.class);
-            if (fluxCourierEntity != null) {
-                CourierCriteria criteria = new CourierCriteria();
-                criteria.setService(fluxCourierEntity.getService());
-                List<CourierEntity> list = courierService.getAll(criteria);
-                if (list != null && !list.isEmpty()) {
-                    // AGGIUNTA LATO DB
-                }
-            } else {
-                log.debug("Nessun microservizio trovato alla porta: ".concat(port.toString()));
-            }
+	@Bean
+	@DependsOn({ "createConnection" })
+	public List<Long> startWarmUp(HttpService service, CourierService courierService) {
+		this.portList.forEach(port -> {
+			CourierEntity fluxCourierEntity = (CourierEntity) service
+					.get(this.baseUrl.concat(port.toString()).concat(this.finalUrl), null, CourierEntity.class);
+			if (fluxCourierEntity != null) {
+				CourierCriteria criteria = new CourierCriteria();
+				criteria.setService(fluxCourierEntity.getService());
+				List<CourierEntity> list = courierService.getAll(criteria);
+				if (list == null && list.isEmpty()) {
+					// AGGIUNTA LATO DB
+				}
+			} else {
+				log.debug("Nessun microservizio trovato alla porta: ".concat(port.toString()));
+			}
 
-        });
-        return this.portList;
-    }
+		});
+		return this.portList;
+	}
 
 }

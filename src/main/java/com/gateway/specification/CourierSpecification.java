@@ -25,30 +25,34 @@ public class CourierSpecification {
                     predicate = cb.equal(root.get(CourierEntity_.id), criteria.getId());
                 }
                 if (criteria.getService() != null) {
-                    predicate = cb.like(root.get(CourierEntity_.service), criteria.getService());
+                    predicate = cb.like(root.get(CourierEntity_.service), buildLike(criteria.getService()));
                 }
                 if (criteria.getUrl() != null) {
-                    predicate = cb.like(root.get(CourierEntity_.url), criteria.getUrl());
+                    predicate = cb.like(root.get(CourierEntity_.url), buildLike(criteria.getUrl()));
                 }
                 if (criteria.getServiceUsername() != null) {
-                    predicate = cb.like(root.get(CourierEntity_.serviceUsername), criteria.getServiceUsername());
+                    predicate = cb.like(root.get(CourierEntity_.serviceUsername), buildLike(criteria.getServiceUsername()));
                 }
                 if (criteria.getServicePassword() != null) {
-                    predicate = cb.like(root.get(CourierEntity_.servicePassword), criteria.getServicePassword());
+                    predicate = cb.like(root.get(CourierEntity_.servicePassword), buildLike(criteria.getServicePassword()));
                 }
                 if (criteria.getAccountUsername() != null) {
-                    predicate = cb.like(root.get(CourierEntity_.accountUsername), criteria.getAccountUsername());
+                    predicate = cb.like(root.get(CourierEntity_.accountUsername), buildLike(criteria.getAccountUsername()));
                 }
                 if (criteria.getAccountPassword() != null) {
-                    predicate = cb.like(root.get(CourierEntity_.accountPassword), criteria.getAccountPassword());
+                    predicate = cb.like(root.get(CourierEntity_.accountPassword), buildLike(criteria.getAccountPassword()));
                 }
                 if (criteria.getToken() != null) {
-                    predicate = cb.like(root.get(CourierEntity_.token), criteria.getToken());
+                    predicate = cb.like(root.get(CourierEntity_.token), buildLike(criteria.getToken()));
                 }
                 return predicate;
 			}
 
 		};
 	}
+
+    static String buildLike(String value) {
+        return "%".concat(value.toLowerCase()).concat("%");
+    }
 
 }

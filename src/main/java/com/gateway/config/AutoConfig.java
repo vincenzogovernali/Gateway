@@ -13,7 +13,6 @@ import com.gateway.service.CourierService;
 import com.gateway.service.HttpService;
 
 import lombok.extern.slf4j.Slf4j;
-import reactor.core.publisher.Mono;
 
 @Configuration
 @Slf4j
@@ -29,11 +28,10 @@ public class AutoConfig {
     @DependsOn({"createConnection"})
     public List<Long> startWarmUp(HttpService service, CourierService courierService) {
         this.portList.forEach(port -> {
-            Mono<?> fluxCourierEntity = service.get(this.baseUrl.concat(port.toString()).concat(this.finalUrl), null, CourierEntity.class);
+            CourierEntity fluxCourierEntity = (CourierEntity) service.get(this.baseUrl.concat(port.toString()).concat(this.finalUrl), null, CourierEntity.class);
             if (fluxCourierEntity != null) {
-                CourierEntity entity = (CourierEntity) fluxCourierEntity.block();
                 CourierCriteria criteria = new CourierCriteria();
-                criteria.setService(entity.getService());
+                criteria.setService(fluxCourierEntity.getService());
                 List<CourierEntity> list = courierService.getAll(criteria);
                 if (list != null && !list.isEmpty()) {
                     // AGGIUNTA LATO DB

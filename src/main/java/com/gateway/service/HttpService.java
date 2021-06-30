@@ -1,5 +1,6 @@
 package com.gateway.service;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -9,29 +10,36 @@ import org.springframework.web.reactive.function.client.WebClient.RequestHeaders
 
 import com.gateway.entity.HeaderEntity;
 
-import reactor.core.publisher.Mono;
-
 @Service
 public class HttpService {
 
-    public Mono<?> get(String url, List<HeaderEntity> headers, Class<?> classType) {
-        RequestHeadersUriSpec<?> spec = WebClient.create(url).get();    
-        if(headers != null && !headers.isEmpty()) {
-            addHeaders(spec, headers);
+    public Object get(String url, List<HeaderEntity> headers, Class<?> classType) {
+        try {
+            RequestHeadersUriSpec<?> spec = WebClient.create(url).get();
+            if (headers != null && !headers.isEmpty()) {
+                addHeaders(spec, headers);
+            }
+
+            return spec.retrieve().bodyToMono(classType).block(Duration.ofMinutes(1));
+        } catch (Exception e) {
+            return null;
         }
-        
-        return spec.retrieve().bodyToMono(classType);
+
     }
 
-    public Mono<?> post(String url, List<HeaderEntity> headers, Class<?> classType, Object body) {
-        RequestBodyUriSpec spec = WebClient.create(url).post();
-        if (headers != null && !headers.isEmpty()) {
-            addHeaders(spec, headers);
+    public Object post(String url, List<HeaderEntity> headers, Class<?> classType, Object body) {
+        try {
+            RequestBodyUriSpec spec = WebClient.create(url).post();
+            if (headers != null && !headers.isEmpty()) {
+                addHeaders(spec, headers);
+            }
+            if (body != null) {
+                spec.bodyValue(body);
+            }
+            return spec.retrieve().bodyToMono(classType).block(Duration.ofMinutes(1));
+        } catch (Exception e) {
+            return null;
         }
-        if (body != null) {
-            spec.bodyValue(body);
-        }
-        return spec.retrieve().bodyToMono(classType);
     }
 
 
